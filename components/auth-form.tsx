@@ -20,35 +20,35 @@ export default function AuthForm() {
   const [userType, setUserType] = useState<"admin" | "attendee">("attendee")
   const [error, setError] = useState("")
 
-  const handleWalletConnect = async () => {
-    setLoading(true)
-    setError("")
-    try {
-      const walletAddress = await WalletService.connectWallet()
-      if (!walletAddress) throw new Error("Failed to connect wallet")
+  // const handleWalletConnect = async () => {
+  //   setLoading(true)
+  //   setError("")
+  //   try {
+  //     const walletAddress = await WalletService.connectWallet()
+  //     if (!walletAddress) throw new Error("Failed to connect wallet")
 
-      const nonce = WalletService.generateNonce()
-      const message = `Sign this message to authenticate with HUDL Quiz Platform.\n\nNonce: ${nonce}`
+  //     const nonce = WalletService.generateNonce()
+  //     const message = `Sign this message to authenticate with HUDL Quiz Platform.\n\nNonce: ${nonce}`
 
-      const signature = await WalletService.signMessage(message, walletAddress)
+  //     const signature = await WalletService.signMessage(message, walletAddress)
 
-      const response = await fetch("/api/auth/wallet", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ walletAddress, signature, message }),
-      })
+  //     const response = await fetch("/api/auth/wallet", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ walletAddress, signature, message }),
+  //     })
 
-      if (response.ok) {
-        window.location.reload()
-      } else {
-        const error = await response.json()
-        setError(error.error || "Wallet authentication failed")
-      }
-    } catch (error: any) {
-      setError(error.message || "Failed to connect wallet")
-    }
-    setLoading(false)
-  }
+  //     if (response.ok) {
+  //       window.location.reload()
+  //     } else {
+  //       const error = await response.json()
+  //       setError(error.error || "Wallet authentication failed")
+  //     }
+  //   } catch (error: any) {
+  //     setError(error.message || "Failed to connect wallet")
+  //   }
+  //   setLoading(false)
+  // }
 
   const handleDiscordConnect = () => {
     setError("")
@@ -167,7 +167,7 @@ export default function AuthForm() {
                 <p className="text-sm text-gray-600">Take quizzes and view your results</p>
               </div>
 
-              {/* Wallet Connect */}
+              {/* Wallet Connect
               <Button
                 onClick={handleWalletConnect}
                 disabled={loading}
@@ -175,7 +175,7 @@ export default function AuthForm() {
               >
                 <Wallet className="w-4 h-4" />
                 {loading ? "Connecting..." : "Connect Wallet"}
-              </Button>
+              </Button> */}
 
               {/* Discord Connect */}
               <Button
