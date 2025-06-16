@@ -75,7 +75,6 @@ export default function Home() {
               <Image src="/hudl-logo.png" alt="HUDL Logo" width={150} height={45} className="h-8 w-auto" />
               <div className="h-8 w-px bg-hudl-blue-light"></div>
               <h1 className="text-xl font-bold text-hudl-blue">HUDL Quizzer</h1>
-              {user.is_admin && <Shield className="w-5 h-5 text-hudl-blue" />}
             </div>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 text-sm text-gray-600">
